@@ -1,0 +1,81 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    # 数据库名
+    name: springboot
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 监控统计拦截的filters
+      filters: stat
+      # 基本参数
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/mytest?useUnicode=true&characterEncoding=UTF8&allowMultiQueries=true
+      username: root
+      password: root
+      # 连接池初始化链接数
+      initial-size: 1
+      # 连接池中最大的活跃连接数
+      max-active: 10
+      # 必须保持连接的最小值(For DBCP and Tomcat connection pools)
+      min-idle: 1
+      # 获取连接等待超时时间
+      max-wait: 60000
+      # 间隔多久检测一次，检测需要关闭的空闲连接，设置1分钟。eviction：收回
+      time-between-eviction-runs-millis: 60000
+      # 一个链接在池中的最小生存时间，设置5分钟。idle：空闲
+      min-evictable-idle-time-millis: 300000
+      # 获取连接时连接校验的sql查询语句，这个查询语句必须是至少返回一条数据的SELECT语句
+      validation-query: SELECT 1
+      # 连接校验查询的超时时间
+      validation-query-timeout: 20
+      # 验证链接的有效性
+      test-while-idle: true
+      # 获取连接时验证，会影响性能
+      test-on-borrow: false
+      # 返回链接时验证
+      test-on-return: false
+      # 是否池化statement，打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+
+# 注意：一定要设置该节点为独立节点，不然解析不了
+mybatis:
+  # 注意：这里一定要对应mapper映射xml文件的所在路径
+  mapper-locations: classpath:mapper/*.xml
+  # 注意：对应实体类的路径
+  type-aliases-package: com.komatsukat.spring.boot.domain
+
+# pagehepler分页插件
+pagehelper:
+  # 方言，指明数据库
+  helper-dialect: mysql
+  # 3.3.0版本可用 - 分页参数合理化，默认false禁用
+  # 启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+  # 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据
+  reasonable: true
+  # 支持通过Mapper接口参数来传递分页参数
+  support-methods-arguments: true
+  # 3.5.0版本可用 - 为了支持startPage(Object params)方法
+  # 增加了一个`params`参数来配置参数映射，用于从Map或ServletRequest中取值
+  # 可以配置pageNum,pageSize,count,pageSizeZero,reasonable,orderBy,不配置映射的用默认值
+  # 不理解该含义的前提下，不要随便复制该配置
+  params: count=countSql
+  # always总是返回PageInfo类型,check检查返回类型是否为PageInfo,none返回Page
+  returnPageInfo: check
+  # 该参数默认为false
+  # 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用
+  # 和startPage中的pageNum效果一样
+  offsetAsPageNum: true
+  # 该参数默认为false
+  # 设置为true时，使用RowBounds分页会进行count查询
+  rowBoundsWithCount: true
+  # 设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果
+  # 相当于没有执行分页查询，但是返回结果仍然是Page类型
+  pageSizeZero: true
+
+
+
+
+
