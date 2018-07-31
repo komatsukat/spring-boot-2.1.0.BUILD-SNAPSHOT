@@ -4,3 +4,4 @@ D:\JavaCode\spring-projects\spring-boot-2.1.0.BUILD-SNAPSHOT\src\main\java\com\k
 D:\JavaCode\spring-projects\spring-boot-2.1.0.BUILD-SNAPSHOT\src\main\java\com\komatsukat\spring\boot\Application.java
 D:\JavaCode\spring-projects\spring-boot-2.1.0.BUILD-SNAPSHOT\src\main\java\com\komatsukat\spring\boot\service\impl\UserServiceImpl.java
 D:\JavaCode\spring-projects\spring-boot-2.1.0.BUILD-SNAPSHOT\src\main\java\com\komatsukat\spring\boot\service\UserService.java
+D:\JavaCode\spring-projects\spring-boot-2.1.0.BUILD-SNAPSHOT\src\main\java\com\komatsukat\spring\boot\interceptor\BaseInterceptor.java

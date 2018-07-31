@@ -88,6 +88,37 @@
             <version>1.2.5</version>
         </dependency>
 
+        <!--
+            在SpringBoot应用中，常常会整合第三方框架，而第三方框架采用的日志框架又不是统一的，
+            那么如何在整个应用中只采用使用一种日志框架而又不影响第三方框架的正常使用呢？
+            1.将系统中其他日志框架先排除出去
+            2.用中间包替换原有的日志框架
+            3.再导入SLF4J其他的实现
+
+            SpringBoot底层使用slf4j和logback来进行日志记录，并且把其他的日志都替换成lslf4j，
+            中间包都转换成了slf4j的日志工厂，如果引入了第三方的框架，一定要把这个框架的默认日志依赖排除掉！！
+
+            实际开发中我们不需要直接添加该依赖，你会发现spring-boot-starter其中包含了 spring-boot-starter-logging。
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <exclusions>
+                <!--
+                    排查Spring框架对commons-logging的依赖
+                    默认使用slf4j和logback实现日志记录 exclusion：排除
+                 -->
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>

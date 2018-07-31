@@ -1,7 +1,10 @@
 server:
   port: 8080
 
+# 开发环境配置
 spring:
+  profiles:
+    active: dev
   datasource:
     # 数据库名
     name: springboot
@@ -40,6 +43,20 @@ spring:
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
 
+# 多环境以三个横线区分
+# 预发环境
+---
+spring:
+  profiles:
+    active: beta
+
+# 生产环境
+---
+spring:
+  profiles:
+    active: production
+
+
 # 注意：一定要设置该节点为独立节点，不然解析不了
 mybatis:
   # 注意：这里一定要对应mapper映射xml文件的所在路径
@@ -75,7 +92,7 @@ pagehelper:
   # 相当于没有执行分页查询，但是返回结果仍然是Page类型
   pageSizeZero: true
 
-
-
-
-
+# 自定义日志配置
+logback:
+  logDir: D:/log/springboot
+  appName: logback
