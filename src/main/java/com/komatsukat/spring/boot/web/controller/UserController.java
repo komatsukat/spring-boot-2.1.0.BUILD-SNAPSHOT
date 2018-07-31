@@ -1,4 +1,4 @@
-package com.komatsukat.spring.boot.controller;
+package com.komatsukat.spring.boot.web.controller;
 
 import com.komatsukat.spring.boot.domain.UserDto;
 import com.komatsukat.spring.boot.service.UserService;

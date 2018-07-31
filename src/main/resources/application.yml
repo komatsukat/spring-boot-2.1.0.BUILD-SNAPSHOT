@@ -1,6 +1,41 @@
 server:
   port: 8080
 
+# ConfigurationProperties是用来注入值的，prefix = “spring.resources”表示前缀。
+# 比如我们配置文件中的spring.resources.static-locations=classpath:/resources这个配置，
+# 去掉spring.resources这个前缀，剩下的为static-locations，
+# 则它的值classpath:/resources会被注入到ConfigurationProperties类的staticLocations成员变量中。
+# 通过这种方法，我们就能通过编写配置文件改变类的状态而无需编写代码。
+# 当然，如何使用这些配置的关键还是要知道这些成员变量的作用
+
+# spring boot全局配置及静态资源配置
+spring:
+    jackson:
+      # 解决spring boot2.0以后之后会把Date类型字段自动给转成UTC字符串问题 如：1990-11-26T16:00:00.000+0000
+      serialization.write_dates_as_timestamps: true
+      time-zone: GMT+8
+    resources:
+      # 设置静态资源的存放地址
+      static-locations: classpath:/resource
+      chain:
+        # 开启 chain cache
+        cache: true
+        # 开启 gzip
+        compressed: true
+        strategy:
+          # 指定版本号
+          fixed:
+            enabled: true
+            paths: /static
+            version: 3.1.0
+          # 使用 MD5 作为版本号
+          content:
+            enabled: true
+            paths: /**
+      # http 缓存过期时间
+      cache:
+        period: 60
+
 # 开发环境配置
 spring:
   profiles:

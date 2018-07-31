@@ -1,4 +1,4 @@
-package com.komatsukat.spring.boot.interceptor;
+package com.komatsukat.spring.boot.web.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -163,14 +163,14 @@
         指定了名字为“console”的appender。
 
         当执行com.komatsukat.spring.boot.controller.UserController类的selectUserPaged方法时，
-        先执行<logger name="com.komatsukat.spring.boot.controller.UserController" level="WARN" additivity="false">
+        先执行<logger name="UserController" level="WARN" additivity="false">
         将级别为“WARN”及大于“WARN”的日志信息交给此logger指定的名为“console”的appender处理，
         在控制台中打出日志，不再向上级root传递打印信息。
 
         当然如果你把additivity="false"改成additivity="true"的话，就会打印两次，
         因为打印信息向上级传递，logger本身打印一次，root接到后又打印一次。
     -->
-    <logger name="com.komatsukat.spring.boot.controller.UserController" level="WARN" additivity="false">
+    <logger name="com.komatsukat.spring.boot.web.controller.UserController" level="WARN" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="fileInfoLog"/>
         <appender-ref ref="fileErrorLog"/>
@@ -178,11 +178,11 @@
 
     <!-- 预发及本地开发环境日志级别设置 -->
     <springProfile name="beta,dev">
-        <logger name="com.komatsukat.spring.boot.controller.UserController" level="INFO"/>
+        <logger name="com.komatsukat.spring.boot.web.controller.UserController" level="INFO"/>
     </springProfile>
 
     <!-- 生产环境日志级别设置 -->
     <springProfile name="production">
-        <logger name="com.komatsukat.spring.boot.controller.UserController" level="WARN"/>
+        <logger name="com.komatsukat.spring.boot.web.controller.UserController" level="WARN"/>
     </springProfile>
 </configuration>
